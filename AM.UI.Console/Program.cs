@@ -23,23 +23,31 @@ using AM.ApplicationCore.Services;
 //Console.WriteLine(plane3.ToString());
 //Console.WriteLine(plane4.ToString());
 
-//Passenger passenger = new Passenger
-//{
-//    FirstName = "Seif",
-//    LastName = "Znati",
-//    EmailAddress = "seifeddine.znati@esprit.tn"
-//};
+Passenger passenger = new Passenger
+{
+    FirstName = "seif",
+    LastName = "ZNATI",
+    EmailAddress = "seifeddine.znati@esprit.tn"
+};
+Console.WriteLine("Before Extension");
+Console.WriteLine(passenger.ToString());
+Console.WriteLine("After Extension");
+passenger.UpperFullName();
+Console.WriteLine(passenger.ToString());
+
 //Console.WriteLine(passenger.ToString());
 //Console.WriteLine(passenger.CheckProfile("Seif", "Znati"));
 //Console.WriteLine(passenger.CheckProfile("Ons", "Znati"));
-//Console.WriteLine(passenger.CheckProfile("Seif", "Znati","seifeddine.znati@esprit.tn"));
+//Console.WriteLine(passenger.CheckProfile("Seif", "Znati", "seifeddine.znati@esprit.tn"));
 //Console.WriteLine(passenger.CheckProfile("Seif", "Znati", "znatiseif@gmail.com"));
 //passenger.PassengerType();
-//Staff staff = new Staff {
+//Staff staff = new Staff
+//{
 //    FirstName = "StaffFName",
 //    LastName = "StaffLN"
 //};
-//Traveller traveller = new Traveller {
+//Traveller traveller = new Traveller
+//{
 //    Nationality = "Tunisian",
 //    FirstName = "FNTraveller"
 //};
@@ -56,3 +64,39 @@ foreach (var item in flightMethods.GetFlightDates("Paris"))
 {
     Console.WriteLine(item);
 }
+
+flightMethods.GetFlights("Destination", "Paris");
+
+flightMethods.ShowFlightDetails(TestData.BoingPlane);
+
+Console.WriteLine(flightMethods.ProgrammedFlightNumber(new DateTime(2022, 01, 04, 15, 10, 10)));
+
+Console.WriteLine(flightMethods.DurationAverage("Madrid")+" Heures");
+
+foreach (var item in flightMethods.OrderedDurationFlights())
+{
+    Console.WriteLine(item.ToString());
+}
+
+Console.WriteLine("Senior Travellers");
+
+foreach (var item in flightMethods.SeniorTravellers(TestData.flight1))
+{
+    Console.WriteLine(item.ToString());
+}
+
+flightMethods.DestinationGroupedFlights();
+
+var groupedFlights = flightMethods.DestinationGroupedFlights1();
+foreach (var group in groupedFlights)
+{
+    Console.WriteLine("Destination: " + group.First().Destination);
+    foreach (var flight in group)
+    {
+        Console.WriteLine(flight.ToString());
+    }
+}
+
+Console.WriteLine("Delegate Functions");
+flightMethods.ShowFlightDetails(TestData.BoingPlane);
+Console.WriteLine(flightMethods.DurationAverage("Paris"));
